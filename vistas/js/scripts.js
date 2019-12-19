@@ -1,6 +1,6 @@
 function  mensajeRegistro (){
 
-    // prueba
+    // prueba nueva
 
 
 }
