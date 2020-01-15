@@ -47,7 +47,7 @@ class ControladorFormularios{
 	public function ctrIngreso(){
 
 		if(isset($_POST["ingresoEmail"])){
- 
+
 			$tabla = "registros";
 			$item = "email";
 			$valor = $_POST["ingresoEmail"];
@@ -56,6 +56,10 @@ class ControladorFormularios{
 			$respuesta = ModeloFormularios::mdlSeleccionarRegistros($tabla, $item, $valor);
 
 			if ($respuesta["email"] == $_POST["ingresoEmail"] && $respuesta["password"] == $_POST["ingresoPassword"]){
+
+				// Activamos la variable de sesión
+
+			$_SESSION["validarIngreso"] = "ok";
 
 				echo '<script>
 

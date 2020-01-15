@@ -1,6 +1,28 @@
 <?php
 
-	$usuarios = ControladorFormularios::ctrSeleccionarRegistros();
+/*
+Pienso que estos inicio de sesión no deben ir aquí. No se debe entrar en esta página si el ingreso es incorrecto. Parpadeo en la pantalla.
+*/
+
+if (isset($_SESSION["validarIngreso"])){
+
+	if($_SESSION["validarIngreso"] != "ok") {
+
+		echo '<script>window.location = "index.php?pagina=ingreso";</script>';
+
+		return;
+
+	}
+
+} else {
+
+		echo '<script>window.location = "index.php?pagina=ingreso";</script>';
+
+		return;
+
+	}
+
+$usuarios = ControladorFormularios::ctrSeleccionarRegistros();
 
 ?>
 

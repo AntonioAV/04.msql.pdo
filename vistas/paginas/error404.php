@@ -4,4 +4,3 @@
 <a href="index.php?pagina=registro" class="btn btn-primary">Volver</a>
 </div>
 
-<!-- Esto está en el master -->
