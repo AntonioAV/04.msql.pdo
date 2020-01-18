@@ -160,6 +160,8 @@ session_start();
 
 			<?php 
 
+			// No creo que esto vaya aquí. Pasarlo a "plantilla.controlador.php"
+
 				#ISSET: isset() Determina si una variable está definida y no es NULL
 
 				if(isset($_GET["pagina"])){
@@ -169,21 +171,28 @@ session_start();
 					   $_GET["pagina"] == "inicio" ||
 					   $_GET["pagina"] == "salir"){
 
-						include "paginas/".$_GET["pagina"].".php";
+						if ($_GET["pagina"] == "inicio"){
 
-					}else{
+							// Vamos a plantilla.controlador CORREGIR
+						
+						} else {
 
-						include "paginas/error404.php";
-					}
+								include "paginas/".$_GET["pagina"].".php";
 
+							}else{
 
-				}else{
+								include "paginas/error404.php";
+							}
 
-					include "paginas/registro.php";
+						}
 
-				}
+						} else {
 
+							include "paginas/registro.php";
+							
 				
+			}
+
 
 			 ?>
 

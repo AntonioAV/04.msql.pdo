@@ -13,4 +13,13 @@ Class ControladorPlantilla{
 
 	}
 
+
+	// Compruebo que no se está entrando en "inicio" sin haberse registrado.
+
+	
+
+
+
+
+
 }
