@@ -160,39 +160,15 @@ session_start();
 
 			<?php 
 
-			// No creo que esto vaya aquí. Pasarlo a "plantilla.controlador.php"
 
-				#ISSET: isset() Determina si una variable está definida y no es NULL
+				/*=======================================================
+				  Hace llamada a la clase ControladorPlantilla
+				=======================================================*/
 
-				if(isset($_GET["pagina"])){
+				$pagina = ControladorPlantilla::ctrTraerPagina();
 
-					if($_GET["pagina"] == "registro" ||
-					   $_GET["pagina"] == "ingreso" ||
-					   $_GET["pagina"] == "inicio" ||
-					   $_GET["pagina"] == "salir"){
-
-						if ($_GET["pagina"] == "inicio"){
-
-							// Vamos a plantilla.controlador CORREGIR
-						
-						} else {
-
-								include "paginas/".$_GET["pagina"].".php";
-
-							}else{
-
-								include "paginas/error404.php";
-							}
-
-						}
-
-						} else {
-
-							include "paginas/registro.php";
+				include "paginas/". $pagina .".php";
 							
-				
-			}
-
 
 			 ?>
 
