@@ -2,182 +2,186 @@
 
 session_start();
 
+$_SESSION["validarIngreso"] = "no";
+
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Ejemplo MVC</title>
+    <title>Ejemplo MVC</title>
 
-	<!--=====================================
+    <!--=====================================
 	PLUGINS DE CSS
-	======================================-->	
+	======================================-->
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-	<!--=====================================
+    <!--=====================================
 	PLUGINS DE JS
-	======================================-->	
+	======================================-->
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-	<!-- Latest compiled Fontawesome-->
-	<script src="https://kit.fontawesome.com/e632f1f723.js" crossorigin="anonymous"></script>
+    <!-- Latest compiled Fontawesome-->
+    <script src="https://kit.fontawesome.com/e632f1f723.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
 
 
-	<!--=====================================
+    <!--=====================================
 	LOGOTIPO
 	======================================-->
 
-	<div class="container-fluid">
-		
-		<h3 class="text-center py-3">LOGO</h3>
+    <div class="container-fluid">
 
-	</div>
+        <h3 class="text-center py-3">LOGO</h3>
 
-	<!--=====================================
+    </div>
+
+    <!--=====================================
 	BOTONERA
 	======================================-->
 
-	<div class="container-fluid  bg-light">
-		
-		<div class="container">
+    <div class="container-fluid  bg-light">
 
-			<ul class="nav nav-justified py-2 nav-pills">
-			
-			<?php if (isset($_GET["pagina"])): ?>
+        <div class="container">
 
-				<?php if ($_GET["pagina"] == "registro"): ?>
+            <ul class="nav nav-justified py-2 nav-pills">
 
-					<li class="nav-item">
-						<a class="nav-link active" href="index.php?pagina=registro">Registro</a>
-					</li>
+                <!--=====================================
+	En el siguiente condicional compruebo que la app se inicia por primera vez.
+  ======================================-->
 
-				<?php else: ?>
+                <?php if (!isset($_GET["pagina"])) {
 
-					<li class="nav-item">
-						<a class="nav-link" href="index.php?pagina=registro">Registro</a>
-					</li>
-					
-				<?php endif ?>
+                    $_GET["pagina"] = "registro";
+                }
 
-				<?php if ($_GET["pagina"] == "ingreso"): ?>
+                ?>
 
-					<li class="nav-item">
-						<a class="nav-link active" href="index.php?pagina=ingreso">Ingreso</a>
-					</li>
+                <!-- El siguiente nos sirve para determinar la página activa y destacar el título -->
 
-				<?php else: ?>
+                <?php if ($_GET["pagina"] == "registro") : ?>
 
-					<li class="nav-item">
-						<a class="nav-link" href="index.php?pagina=ingreso">Ingreso</a>
-					</li>
-					
-				<?php endif ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php?pagina=registro">Registro</a>
+                    </li>
 
-				<?php if ($_GET["pagina"] == "inicio"): ?>
+                <?php else : ?>
 
-					<li class="nav-item">
-						<a class="nav-link active" href="index.php?pagina=inicio">Inicio</a>
-					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pagina=registro">Registro</a>
+                    </li>
 
-				<?php else: ?>
+                <?php endif ?>
 
-					<li class="nav-item">
-						<a class="nav-link" href="index.php?pagina=inicio">Inicio</a>
-					</li>
-					
-				<?php endif ?>
+                <?php if ($_GET["pagina"] == "ingreso") : ?>
 
-				<?php if ($_GET["pagina"] == "salir"): ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php?pagina=ingreso">Ingreso</a>
+                    </li>
 
-					<li class="nav-item">
-						<a class="nav-link active" href="index.php?pagina=salir">Salir</a>
-					</li>
+                <?php else : ?>
 
-				<?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pagina=ingreso">Ingreso</a>
+                    </li>
 
-					<li class="nav-item">
-						<a class="nav-link" href="index.php?pagina=salir">Salir</a>
-					</li>
-					
-				<?php endif ?>
+                <?php endif ?>
 
-			<?php else: ?>
+                <?php if ($_GET["pagina"] == "inicio" && $_SESSION["validarIngreso"] == "ok") : ?>
 
-				<!-- GET: $_GET["variable"] Variables que se pasan como parámetros Vía URL ( También conocido como cadena de consulta a través de la URL) 
-				Cuando es la primera variable se separa con ?
-				las que siguen a continuación se separan con &
-				-->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php?pagina=inicio">Inicio</a>
+                    </li>
 
-				<li class="nav-item">
-					<a class="nav-link active" href="index.php?pagina=registro">Registro</a>
-				</li>
+                <?php else : ?>
 
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?pagina=ingreso">Ingreso</a>
-				</li>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="index.php?pagina=inicio">Inicio</a> -->
+                        <a class="nav-link" href="index.php?pagina=<?php echo $_GET["pagina"] ?>">Inicio</a>
+                    </li>
 
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?pagina=inicio">Inicio</a>
-				</li>
+                <?php endif ?>
 
-				<li class="nav-item">
-					<a class="nav-link" href="index.php?pagina=salir">Salir</a>
-				</li>
-				
-			<?php endif ?>
+                <?php if ($_GET["pagina"] == "salir") : ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.php?pagina=salir">Salir</a>
+                    </li>
 
-			</ul>
+                <?php else : ?>
 
-		</div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?pagina=salir">Salir</a>
+                    </li>
 
-	</div>
 
-	<!--=====================================
+                <?php endif ?>
+
+                <?php
+
+
+                /*=======================================================
+                      REVISAR QUE ESTE $_POST MANTENGA EL VALOR DE LA ANTERIOR PESTAÑA MARCADA Y ASÍ NO ENTRAR EN EL INICIO SI NO SE ESTA LOGEADO
+                    =======================================================*/
+
+                $_POST["ultimaPagina"] = $_GET["pagina"];
+
+                ?>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!--=====================================
 	CONTENIDO
 	======================================-->
 
-	<div class="container-fluid">
-		
-		<div class="container py-5">
+    <div class="container-fluid">
 
-			<?php 
+        <div class="container py-5">
+
+            <?php
 
 
-				/*=======================================================
+            /*=======================================================
 				  Hace llamada a la clase ControladorPlantilla
 				=======================================================*/
 
-				$pagina = ControladorPlantilla::ctrTraerPagina();
+            $pagina = ControladorPlantilla::ctrTraerPagina();
 
-				include "paginas/". $pagina .".php";
-							
-
-			 ?>
-
-		</div>
-
-	</div>
+            include "paginas/" . $pagina . ".php";
 
 
-<script src="../vistas/js/scripts.js"></script>
-	
+            ?>
+
+        </div>
+
+    </div>
+
+
+    <script src="../vistas/js/scripts.js"></script>
+
 </body>
+
 </html>
