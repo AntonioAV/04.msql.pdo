@@ -46,7 +46,6 @@ class ControladorPlantilla
 				// Si no se ha iniciado sesión y $_GET["pagina"] != inicio no entra en la página inicio.
 				$pagina = $_POST["ultimaPagina"];
 
-
 				return $pagina;
 			}
 		}

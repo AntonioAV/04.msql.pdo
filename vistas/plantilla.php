@@ -2,8 +2,6 @@
 
 session_start();
 
-$_SESSION["validarIngreso"] = "no";
-
 ?>
 
 
@@ -72,6 +70,8 @@ $_SESSION["validarIngreso"] = "no";
                 <?php if (!isset($_GET["pagina"])) {
 
                     $_GET["pagina"] = "registro";
+
+                    $_POST["inicio"] = false;
                 }
 
                 ?>
@@ -115,7 +115,7 @@ $_SESSION["validarIngreso"] = "no";
                 <?php else : ?>
 
                     <li class="nav-item">
-                        <!-- <a class="nav-link" href="index.php?pagina=inicio">Inicio</a> -->
+
                         <a class="nav-link" href="index.php?pagina=<?php echo $_GET["pagina"] ?>">Inicio</a>
                     </li>
 
@@ -142,6 +142,8 @@ $_SESSION["validarIngreso"] = "no";
                       REVISAR QUE ESTE $_POST MANTENGA EL VALOR DE LA ANTERIOR PESTAÑA MARCADA Y ASÍ NO ENTRAR EN EL INICIO SI NO SE ESTA LOGEADO
                     =======================================================*/
 
+
+
                 $_POST["ultimaPagina"] = $_GET["pagina"];
 
                 ?>
@@ -165,10 +167,19 @@ $_SESSION["validarIngreso"] = "no";
 
 
             /*=======================================================
-				  Hace llamada a la clase ControladorPlantilla
-				=======================================================*/
+  Comprobar que no se ha iniciado sesión.
+=======================================================*/
 
-            $pagina = ControladorPlantilla::ctrTraerPagina();
+            $resultado =
+
+
+                /*=======================================================
+				  Hace llamada a la clase ControladorPlantilla
+                =======================================================*/
+
+
+
+                $pagina = ControladorPlantilla::ctrTraerPagina();
 
             include "paginas/" . $pagina . ".php";
 
